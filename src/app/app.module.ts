@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 import { routing }       from './app.routing';
 import { AgendaModule }  from './agenda/agenda.module';
 import { CityModule }    from './city/city.module';
+import { PlanComponent } from './city/plan/plan.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { CityModule }    from './city/city.module';
     AgendaModule,
     CityModule 
   ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, PlanComponent ],
   providers: [ ],
   bootstrap: [ AppComponent ]
 })
