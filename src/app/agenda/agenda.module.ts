@@ -5,10 +5,10 @@ import { AgendaComponent } from './agenda.component';
 import { AgendaListComponent } from './agenda-list.component';
 import { AgendaDetailsComponent } from './agenda-details.component';
 import { AgendaService } from './agenda.service';
-import { routing } from './agenda.routing';
+// import { routing } from './agenda.routing';
 
 @NgModule ({
-	imports: [ SharedModule, routing ], 
+	imports: [ SharedModule ], 
 	declarations: [ AgendaComponent, AgendaListComponent, AgendaDetailsComponent  ],
 	providers: [ AgendaService ]
 })

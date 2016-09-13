@@ -2,6 +2,8 @@ import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Plan } from './plan/plan';
+
 
 //consider seperate Plan subfolder with PlanService 
 @Injectable()
@@ -15,7 +17,7 @@ export class CityService {
 	getPlans(): Observable<Plan[]> {
 	    let plan$ = this.http
 	      .get(`${this.cityUrl}/city`, { headers: this.getHeaders() })
-	      .map(mapPlans);
+	      .map(this.mapPlans);
 	    return plan$;
   	}
 
@@ -26,12 +28,12 @@ export class CityService {
     }
 
   	mapPlans(res: Response): Plan[] {
-   		return res.json().results.map(toPlan)
+   		return res.json().results.map(this.toPlan)
 	}
 
 	toPlan(r: any): Plan {
 	  	let plan = <Plan> ({
-	      id: extractId(r),
+	      id: this.extractId(r),
 	      name: r.name,
 	      description: r.description,
 	      url: r.url
@@ -49,12 +51,12 @@ export class CityService {
 	get(id: number): Observable<Plan> {
 	    let plan$ = this.http
 	      .get(`${this.cityUrl}/plans/${id}`, { headers: this.getHeaders() })
-	      .map(mapPlan);
+	      .map(this.mapPlan);
 	    return plan$;
   	}
 
     mapPlan(res: Response): Plan {
-   		return toPlan(res.json());
+   		return this.toPlan(res.json());
 	}
 
 	save(plan: Plan): Observable<Response> {

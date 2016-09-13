@@ -5,13 +5,22 @@ import { AgendaService } from './agenda.service';
 
 @Component({
 	selector: 'app-agenda-details',
-	template: ``, 
+	template: `
+		<div>{{id}}</div>
+		<br>
+		<a routerLink="../list">Agenda</a>
+	`, 
 
 })
 export class AgendaDetailsComponent implements OnInit {
+
 	agenda: Agenda;
+	id: number;
 
-	constructor(private route: ActivatedRoute, private agendaService: AgendaService) { }
+	constructor(private route: ActivatedRoute) { }
 
+	ngOnInit() {
+		this.id = Number.parseInt(this.route.snapshot.params['id'], 10);
+	};
 
 }
