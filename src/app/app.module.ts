@@ -4,24 +4,23 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 //App Root
 import { AppComponent }  from './app.component';
+import { routing, appRoutingProviders }    from './app.routing';
 
 //Feature Modules
-// import { routing }       from './app.routing';
 import { AgendaModule }  from './agenda/agenda.module';
 import { CityModule }    from './city/city.module';
-// import { PlanComponent } from './city/plan/plan.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     JsonpModule,
-    // routing,
+    routing,
     AgendaModule,
-    CityModule 
+    CityModule
   ],
   declarations: [ AppComponent ],
-  providers: [ ],
+  providers: [ appRoutingProviders ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
