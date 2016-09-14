@@ -10,8 +10,8 @@ import { AgendaService } from './agenda.service';
   <h2>Hi!</h2>
   	<div>
       <ul>
-        <li *ngFor="let agenda of agendas | async" >
-  		    <a href="#" routerLink="{{'/agenda' + agenda.id}}">
+        <li *ngFor="let agenda of agendas" >
+  		    <a href="#" routerLink="{{'/agenda/' + agenda.id}}">
             {{agenda.name}}
           </a>
         </li>
@@ -21,7 +21,8 @@ import { AgendaService } from './agenda.service';
 })
 export class AgendaListComponent implements OnInit {
   
-  agendas: Observable<Agenda[]>;
+  // agendas: Observable<Agenda[]>;
+  agendas: Agenda[] = [];
 
   constructor(private agendaService: AgendaService) { }
 

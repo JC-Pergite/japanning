@@ -10,7 +10,7 @@ import { Plan } from '../city/plan/plan';
 export class AgendaService {
 
 	private agendas: Agenda[] = [
-		new Agenda(1, 'DayOne', [new Plan(2, 'Pontocho', 'yum')])
+		new Agenda(1, 'DayOne', [new Plan(2, 'Pontocho', 'Tiny alley; traditional eats')])
 	];
 
 	constructor(){};

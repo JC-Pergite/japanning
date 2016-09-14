@@ -5,8 +5,13 @@ import { AgendaListComponent } from './agenda-list.component';
 import { AgendaDetailsComponent } from './agenda-details.component';
 
 const agendaRoutes: Routes = [
-	{ path: 'agenda', component: AgendaListComponent },
-	{ path: ':id', component: AgendaDetailsComponent }
+
+    { path: 'agenda', children: 
+      	[
+            { path: '', component: AgendaListComponent },
+            { path: ':id', component: AgendaDetailsComponent }
+        ]
+    }      
 ];
 
 export const agendaRouting: ModuleWithProviders =

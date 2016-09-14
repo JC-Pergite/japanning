@@ -6,8 +6,10 @@ import { PlanListComponent } from './plan/plan-list.component';
 import { PlanDetailsComponent } from './plan/plan-details.component';
 
 const cityRoutes: Routes = [
-	{ path: '', component: CityListComponent, children: 
+
+	{ path: 'city', children: 
 		[
+			{ path: '', component: CityListComponent },
 			{ path: 'plans', children:
 				[ 	
 					{ path: '', component: PlanListComponent },

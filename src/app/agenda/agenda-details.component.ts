@@ -7,8 +7,6 @@ import { AgendaService } from './agenda.service';
 	selector: 'app-agenda-details',
 	template: `
 		<div>{{id}}</div>
-		<br>
-		<a routerLink="../list">Agenda</a>
 	`, 
 
 })
@@ -20,7 +18,7 @@ export class AgendaDetailsComponent implements OnInit {
 	constructor(private route: ActivatedRoute) { }
 
 	ngOnInit() {
-		this.id = Number.parseInt(this.route.snapshot.params['id'], 10);
+		let id = Number.parseInt(this.route.snapshot.params['id'], 10);
 	};
 
 }

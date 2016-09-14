@@ -10,7 +10,7 @@ import { CityService } from './city.service';
 
 @NgModule ({
 	imports: [ SharedModule, cityRouting ], 
-	declarations: [ PlanListComponent, PlanDetailsComponent ],
+	declarations: [ CityListComponent, PlanListComponent, PlanDetailsComponent ],
 	providers: [ CityService ]
 })
 export class CityModule { }

@@ -20,7 +20,6 @@ export class PlanDetailsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
-          // this.id = Number.parseInt(this.route.snapshot.params['id'], 10);
           let id = Number.parseInt(params['id']);
           this.cityService
             .get(id)

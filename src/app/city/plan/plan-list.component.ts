@@ -10,7 +10,7 @@ export class PlanListComponent implements OnInit {
   
 	private plans: Plan[] = [];
 
-  	constructor(private cityService: CityService) { }
+  	constructor(private _cityService: CityService) { }
 
 	ngOnInit() {
 		this._cityService.getPlans()
