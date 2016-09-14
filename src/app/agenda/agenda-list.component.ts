@@ -22,12 +22,17 @@ import { AgendaService } from './agenda.service';
 export class AgendaListComponent implements OnInit {
   
   // agendas: Observable<Agenda[]>;
-  agendas: Agenda[] = [];
+  errorMessage: string;
+  agendas: Agenda[];
 
   constructor(private agendaService: AgendaService) { }
 
-  ngOnInit() {
-  	this.agendas = this.agendaService.getAgendas();
+  ngOnInit() { this.getAgendas(); }
+
+  getAgendas() {
+      this.agendaService.getAgendas()
+      .subscribe(agendas => this.agendas = agendas,
+                  error => this.errorMessage = <any>error);               
   }
 
 }

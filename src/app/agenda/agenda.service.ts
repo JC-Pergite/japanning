@@ -9,18 +9,14 @@ import { Plan } from '../city/plan/plan';
 @Injectable()
 export class AgendaService {
 
-	private agendas: Agenda[] = [
-		new Agenda(1, 'DayOne', [new Plan(2, 'Pontocho', 'Tiny alley; traditional eats')])
-	];
+	private agendaUrl = 'app/agenda/agendas.json';
 
-	constructor(){};
+	constructor(private http: Http) { };
 
-	getAgendas() {
-		return this.agendas;
+	getAgendas(): Observable<Agenda[]> {
+		return this.http
+			.get(this.agendaUrl)
+			.map((res: Response) => res.json().data || {})
+			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
-
-	getAgenda(id: number | string) {
-    	console.log(this.agendas[id]);
-    	return this.agendas[id]
-  }
 }

@@ -6,7 +6,7 @@ import { AgendaService } from './agenda.service';
 @Component({
 	selector: 'app-agenda-details',
 	template: `
-		<div>{{id}}</div>
+		<h1>Osaka</h1>
 	`, 
 
 })

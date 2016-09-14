@@ -5,11 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { Plan } from './plan/plan';
 
 
-//consider seperate Plan subfolder with PlanService 
 @Injectable()
 export class CityService {
 
-  	private cityUrl: string = 'app/city/plans';//URL to web API 'http://cityUrl/.co.api'
+  	private cityUrl: string = 'app/city/plans';
 
 	constructor (private http: Http) {}
 
