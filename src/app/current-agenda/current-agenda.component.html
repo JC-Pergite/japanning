@@ -1,17 +1,17 @@
-<p>
-  current-agenda works!
-</p>
-<app-agenda-list *ngFor="let agenda of agendas | async" [agenda]="agenda"></app-agenda-list>
 <form (ngSubmit)="saveAgenda()">
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" class="form-control" placeholder="Plan" [(ngModel)]="model.plan" name="plan">
+                    <input type="text" class="form-control" placeholder="Plan" [(ngModel)]="model.plans" name="plans">
                 </div>
                 <br />
-                <textarea class="form-control" rows="3" placeholder="Text" [(ngModel)]="model.text" name="text"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Text" [(ngModel)]="model.name" name="name"></textarea>
                 <br />
                 <button *ngIf="!editing" type="submit" class="btn btn-primary btn-block">Add</button>
                 <button *ngIf="editing" type="submit" class="btn btn-warning btn-block">Update</button>
             </div>
-        </form>
+</form>
+
+<!-- CLI issue; try looking into mangles and switching to false for now
+<app-agenda-list *ngFor="let agenda of agendas | async" [agenda]="agenda"></app-agenda-list>
+ -->

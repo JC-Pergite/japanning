@@ -7,7 +7,7 @@ import { Agenda } from './agenda';
 import { Plan } from '../city/plan/plan';
 
 @Injectable()
-export class AgendaService {    // REMEMBER TO CHANGE AGENDA.ts BACK for Plan Array
+export class AgendaService {  
 
 	private agendaUrl = 'app/agenda/agendas.json';
 
@@ -22,7 +22,7 @@ export class AgendaService {    // REMEMBER TO CHANGE AGENDA.ts BACK for Plan Ar
 
 	addAgenda (body: Object): Observable<Agenda[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
-        let headers    = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        let headers    = new Headers({ 'Content-Type': 'application/json' }); // Set content type to JSON
         let options    = new RequestOptions({ headers: headers }); // Create a request option
 
         return this.http
@@ -33,20 +33,20 @@ export class AgendaService {    // REMEMBER TO CHANGE AGENDA.ts BACK for Plan Ar
 
     updateAgenda (body: Object): Observable<Agenda[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
-        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); // Create a request option
+        let headers      = new Headers({ 'Content-Type': 'application/json' }); 
+        let options       = new RequestOptions({ headers: headers }); 
 
         return this.http
-        	.put(`${this.agendaUrl}/${body['id']}`, body, options) // ...using put request
-            .map((res:Response) => res.json().data || {}) // ...and calling .json() on the response to return data
-            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        	.put(`${this.agendaUrl}/${body['id']}`, body, options) 
+            .map((res:Response) => res.json().data || {}) 
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }   
 
     // Delete a comment
     removePlan (id:string): Observable<Agenda[]> {
         return this.http
-        	.delete(`${this.agendaUrl}/plans/${id}`) // ...using put request
-            .map((res:Response) => res.json().data || {}) // ...and calling .json() on the response to return data
-            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        	.delete(`${this.agendaUrl}/plans/${id}`) 
+            .map((res:Response) => res.json().data || {}) 
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }   
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Agenda } from './agenda';
@@ -21,7 +21,7 @@ import { AgendaService } from './agenda.service';
 })
 export class AgendaListComponent implements OnInit {
   
-  // agendas: Observable<Agenda[]>;
+  @Input() agenda: Agenda;
   errorMessage: string;
   agendas: Agenda[];
 

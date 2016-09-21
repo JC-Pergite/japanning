@@ -7,9 +7,6 @@ import { AgendaListComponent } from '../agenda/agenda-list.component';
 import { Plan } from '../city/plan/plan';
 import { Agenda } from '../agenda/agenda';
 
-
-
-
 @Component({
   selector: 'app-current-agenda',
   templateUrl: './current-agenda.component.html',
@@ -18,12 +15,10 @@ import { Agenda } from '../agenda/agenda';
 })
 export class CurrentAgendaComponent implements OnChanges {
 
-
   private model = new Agenda('', []);
   private editing = false;
   errorMessage: string;
   agendas: Agenda;
-
 
   @Input() editId: string;
   @Input() listId: string;
@@ -59,7 +54,7 @@ export class CurrentAgendaComponent implements OnChanges {
 	        }, 
 	        err => {
 	            // Log errors if any
-	            console.log(err);
+	            
 	        });
   	}
 

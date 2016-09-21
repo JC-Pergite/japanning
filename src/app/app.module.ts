@@ -9,7 +9,7 @@ import { routing, appRoutingProviders }    from './app.routing';
 //Feature Modules
 import { AgendaModule }  from './agenda/agenda.module';
 import { CityModule }    from './city/city.module';
-// import { CurrentAgendaModule } from './current-agenda/current-agenda.module';
+import { CurrentAgendaModule } from './current-agenda/current-agenda.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { CityModule }    from './city/city.module';
     JsonpModule,
     routing,
     AgendaModule,
-    CityModule,
+    CityModule
   ],
   declarations: [ AppComponent ],
   providers: [ appRoutingProviders ],

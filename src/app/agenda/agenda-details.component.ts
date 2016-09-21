@@ -9,9 +9,9 @@ import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
 	selector: 'app-agenda-details',
 	template: `
 		<div class="panel panel-default">
-            <div class="panel-heading">{{agenda.name}}</div>
+            <div class="panel-heading">{{agenda?.name}}</div>
             <div class="panel-body">
-                {{agenda.plans}}
+                {{agenda?.plans}}
             </div>
             <div class="panel-footer">
                 <button class="btn btn-info" (click)="editComment()"><span class="glyphicon glyphicon-edit"></span></button>

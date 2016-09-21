@@ -7,16 +7,15 @@ import { PlanListComponent } from './plan/plan-list.component';
 import { PlanDetailsComponent } from './plan/plan-details.component';
 import { cityRouting } from './city.routing';
 import { CityService } from './city.service';
-import { CurrentAgendaModule } from '../current-agenda/current-agenda.module';
-
+import { CurrentAgendaComponent } from '../current-agenda/current-agenda.component';
+import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
 
 @NgModule ({
-	imports: [ SharedModule, cityRouting, CurrentAgendaModule ], 
+	imports: [ SharedModule, cityRouting ], 
 	declarations: [ CityListComponent, 
 					PlanListComponent, 
-					PlanDetailsComponent, 
-					CurrentAgendaModule 
+					PlanDetailsComponent 
 				  ],
-	providers: [ CityService ]
+	providers: [ CityService, CurrentAgendaService ]
 })
 export class CityModule { }
