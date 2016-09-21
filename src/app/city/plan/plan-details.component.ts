@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan } from './plan';
 import { CityService } from '../city.service';
 
 @Component({
 	selector: 'app-plan-details',
-	template: ``
+	template: `<h1>{{plan.id}}, {{plan.name}}</h1>`
 })
-export class PlanDetailsComponent implements OnInit, OnDestroy {
+export class PlanDetailsComponent implements OnInit {
 
    	plan: Plan;
     private sub: any;
@@ -15,19 +15,23 @@ export class PlanDetailsComponent implements OnInit, OnDestroy {
 
     constructor(private cityService: CityService,
                 private route: ActivatedRoute,
-                private router: Router) {
-    }
+                private router: Router) { }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-          let id = Number.parseInt(params['id']);
-          this.cityService
-            .get(id)
-            .subscribe(p => this.plan = p);
-        });
+        // let id = Number.parseInt(this.route.snapshot.params['id'], 10);
+            let id = Number.parseInt(this.route.snapshot.params['id'], 10);
+            // this.cityService.getDetails(id).subscribe(p => this.plan = p);
     }
+    // ngOnInit() {
+    //     this.sub = this.route.params.subscribe(params => {
+    //       let id = Number.parseInt(params['id']);
+    //       this.cityService
+    //         .get(id)
+    //         .subscribe(p => this.plan = p);
+    //     });
+    // }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
+    // ngOnDestroy() {
+    //     this.sub.unsubscribe();
+    // }
 }

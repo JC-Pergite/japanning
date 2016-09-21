@@ -5,19 +5,24 @@ import { City } from '../city/city';
 @Component({
   selector: 'app-city-list',
   template: `
-    <div *ngFor="let city of cities | async">
-      <a routerLink="{{'../' + city.id}}">{{city.name}}</a>
+    <div *ngFor="let city of cities">
+      <a routerLink="{{'./' + 'plans'}}">{{city.plans}}</a>
     </div>   
   `
 })
 export class CityListComponent implements OnInit {
   
+  errorMessage: string;
   cities: City[] = [];
 
   constructor(private cityService: CityService) { }
 
-  ngOnInit() {
-    // this.cities = this.cityService.getCities();
+  ngOnInit() { this.getCities(); }
+
+  getCities() {
+      this.cityService.getCities()
+      .subscribe(cities => this.cities = cities,
+                  error => this.errorMessage = <any>error);               
   }
 
 }

@@ -2,6 +2,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CityListComponent } from './city-list.component';
+// import { CityDetailsComponent } from './city-details.component';
+import { PlanComponent } from './plan/plan.component';
 import { PlanListComponent } from './plan/plan-list.component';
 import { PlanDetailsComponent } from './plan/plan-details.component';
 
@@ -10,6 +12,7 @@ const cityRoutes: Routes = [
 	{ path: 'city', children: 
 		[
 			{ path: '', component: CityListComponent },
+			// { path: ':id', component: CityDetailsComponent },
 			{ path: 'plans', children:
 				[ 	
 					{ path: '', component: PlanListComponent },

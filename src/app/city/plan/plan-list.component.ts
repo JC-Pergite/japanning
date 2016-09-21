@@ -4,17 +4,41 @@ import { CityService } from '../city.service';
 
 @Component({
   selector: 'app-plan-list',
-  templateUrl: './plan-list.component.html',
+  // templateUrl: './plan-list.component.html',
+  template: `
+  	<div>
+      <ul>
+        <li *ngFor="let plan of plans" >
+  		  <a href="#" routerLink="{{'./' + plan.id}}">
+            {{plan.name}}
+          </a>
+        </li>
+      </ul>    
+  	</div>	 
+  
+  	`
 })
 export class PlanListComponent implements OnInit {
   
-	private plans: Plan[] = [];
+	plans: Plan[] = [];
 
-  	constructor(private _cityService: CityService) { }
+  	constructor(private cityService: CityService) { }
 
 	ngOnInit() {
-		this._cityService.getPlans()
+		this.cityService.getPlans()
 				.subscribe(p => this.plans = p)
 	}
+
+	// 	ngOnInit() {
+	// 	this.getPlans();
+	// }
+
+
+ //  getPlans() {
+ //      this.cityService.getPlans()
+ //      .subscribe(plans => this.plans = plans,
+ //                  error => this.errorMessage = <any>error);               
+ //  }
+
 
 }

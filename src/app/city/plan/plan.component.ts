@@ -1,10 +1,8 @@
-// import { Component } from '@angular/core';
-// import { Plan } from './plan';
+import { Component } from '@angular/core';
 
-// @Component({
-//   selector: 'app-plan',
-//   templateUrl: './plan.component.html',
-//   styleUrls: ['./plan.component.css']
-// })
-// export class PlanComponent {
-// }
+@Component({
+  selector: 'app-plan',
+  templateUrl: './plan.component.html'
+})
+export class PlanComponent {
+}
