@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule }      from '@angular/core';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-//App Root
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
+
 import { routing, appRoutingProviders }    from './app.routing';
 
 //Feature Modules
@@ -15,7 +16,6 @@ import { CurrentAgendaModule } from './current-agenda/current-agenda.module';
   imports: [
     BrowserModule,
     HttpModule,
-    JsonpModule,
     routing,
     AgendaModule,
     CityModule

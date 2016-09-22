@@ -13,12 +13,26 @@ export class AgendaService {
 
 	constructor(private http: Http) { };
 
+    private getHeaders() {
+        let headers = new Headers();
+        headers.append('Accept', 'application/json');
+          return headers;
+    }
+
 	getAgendas(): Observable<Agenda[]> {
 		return this.http
 			.get(this.agendaUrl)
 			.map((res: Response) => res.json().data || {})
 			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
+
+     getAgenda(id: any): Observable<Agenda> {
+                 return this.http
+            .get(this.agendaUrl+'id')
+            .map((res: Response) => res.json().data || {})
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
+
+    }
 
 	addAgenda (body: Object): Observable<Agenda[]> {
         let bodyString = JSON.stringify(body); // Stringify payload

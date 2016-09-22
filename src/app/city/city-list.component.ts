@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CityService } from './city.service';
 import { City } from '../city/city';
-import { CurrentAgendaComponent } from '../current-agenda/current-agenda.component';
 import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
+import { Agenda } from '../agenda/agenda';
 
 @Component({
   selector: 'app-city-list',
@@ -11,14 +11,12 @@ import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
       <a routerLink="{{'./' + 'plans'}}">{{city.plans}}</a>
     </div> 
     <div>  
-      <app-current-agenda>Hi</app-current-agenda>
+      <app-current-agenda></app-current-agenda>
     </div>  
-  `,
-  providers: [ CurrentAgendaService ],
-  directives: [ CurrentAgendaComponent ]
+  `
 })
 export class CityListComponent implements OnInit {
-  
+
   errorMessage: string;
   cities: City[] = [];
 

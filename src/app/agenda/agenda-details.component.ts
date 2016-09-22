@@ -13,36 +13,34 @@ import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
             <div class="panel-body">
                 {{agenda?.plans}}
             </div>
-            <div class="panel-footer">
-                <button class="btn btn-info" (click)="editComment()"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger" (click)="deletePlan(plan.id)"><span class="glyphicon glyphicon-remove"></span></button>
+         <div class="panel-footer">
+                <button class="btn btn-info" (click)="editComment()"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+                <button class="btn btn-danger" (click)="deletePlan(agenda?.plans['id'])"><span class="glyphicon glyphicon-remove"></span>Delete</button>
             </div>
-        </div>	`, 
+            
+        `, 
 
 })
-export class AgendaDetailsComponent implements OnInit {
-
-	@Input() agenda: Agenda;
+export class AgendaDetailsComponent {
+    @Input() agenda: Agenda;
 	@Input() listId: string;
 	@Input() editId: string;
-
-	// agenda: Agenda;
-	id: number;
 
 	constructor(private route: ActivatedRoute, 
 				private agendaService: AgendaService,
 				private currentAgendaService: CurrentAgendaService) { }
 
-	ngOnInit() {
-		let id = Number.parseInt(this.route.snapshot.params['id'], 10);
-	}
+	// ngOnInit() {
+	// 	let id = Number.parseInt(this.route.snapshot.params['id'], 10);
+ //        console.log(this.agenda);
+	// }
 
 	editAgenda() {
         // Emit edit event
         CurrentAgendaService.get(this.editId).emit(this.agenda);
     }
 
-    deletePlan(id) {
+    deletePlan(id:string) {
         // Call removeComment() from CommentService to delete comment
         this.agendaService.removePlan(id).subscribe(
                                 agendas => {
@@ -51,7 +49,6 @@ export class AgendaDetailsComponent implements OnInit {
                                 }, 
                                 err => {
                                     // Log errors if any
-                                    console.log(err);
                                 });
     }
 }

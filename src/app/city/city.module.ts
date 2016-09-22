@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { CityListComponent } from './city-list.component';
-// import { PlanComponent } from './plan/plan.component';
 import { PlanListComponent } from './plan/plan-list.component';
 import { PlanDetailsComponent } from './plan/plan-details.component';
 import { cityRouting } from './city.routing';
 import { CityService } from './city.service';
-import { CurrentAgendaComponent } from '../current-agenda/current-agenda.component';
 import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
+import { CurrentAgendaComponent } from '../current-agenda/current-agenda.component';
+
 
 @NgModule ({
 	imports: [ SharedModule, cityRouting ], 
-	declarations: [ CityListComponent, 
+	declarations: [ PlanDetailsComponent, 
 					PlanListComponent, 
-					PlanDetailsComponent 
+					CityListComponent,
+					CurrentAgendaComponent
 				  ],
 	providers: [ CityService, CurrentAgendaService ]
 })

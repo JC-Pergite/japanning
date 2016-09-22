@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { CurrentAgendaService } from './current-agenda.service';
 import { CityService } from '../city/city.service';
 import { AgendaService } from '../agenda/agenda.service';
-import { AgendaListComponent } from '../agenda/agenda-list.component';
 import { Plan } from '../city/plan/plan';
 import { Agenda } from '../agenda/agenda';
 
@@ -11,11 +10,11 @@ import { Agenda } from '../agenda/agenda';
   selector: 'app-current-agenda',
   templateUrl: './current-agenda.component.html',
   styleUrls: ['./current-agenda.component.css'],
-  providers: [ AgendaService ]
+  // providers: [ AgendaService, CurrentAgendaService ]
 })
 export class CurrentAgendaComponent implements OnChanges {
 
-  private model = new Agenda('', []);
+  private model = new Agenda(1, '', []);
   private editing = false;
   errorMessage: string;
   agendas: Agenda;
@@ -48,7 +47,7 @@ export class CurrentAgendaComponent implements OnChanges {
 	            // Emit list event
 	            CurrentAgendaService.get(this.listId).emit(agendas);
 	            // Empty model
-	            this.model = new Agenda('', []);
+	            this.model = new Agenda(1,'', []);
 	            // Switch editing status
 	            if(this.editing) this.editing = !this.editing;
 	        }, 
@@ -58,7 +57,7 @@ export class CurrentAgendaComponent implements OnChanges {
 	        });
   	}
 
-  ngOnChanges() {
+  ngOnChanges(changes:any) {
         // Listen to the 'edit'emitted event so as populate the model
         // with the event payload
         CurrentAgendaService.get(this.editId).subscribe((agenda:Agenda) => {
