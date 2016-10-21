@@ -6,7 +6,7 @@ import { CurrentAgendaService } from './current-agenda.service';
 import { AgendaListComponent } from '../agenda/agenda-list.component';
 
 @NgModule ({
-	imports: [ SharedModule ], 
+	imports: [ SharedModule, AgendaListComponent ], 
 	exports: [ CurrentAgendaComponent ],
 	declarations: [ AgendaListComponent, CurrentAgendaComponent ],
 	providers: [ CurrentAgendaService ]

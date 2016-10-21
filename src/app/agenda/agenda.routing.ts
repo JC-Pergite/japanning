@@ -3,13 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AgendaListComponent } from './agenda-list.component';
 import { AgendaDetailsComponent } from './agenda-details.component';
+import { AgendaResolver } from './agenda.resolver';
 
 const agendaRoutes: Routes = [
 
     { path: 'agenda', children: 
       	[
             { path: '', component: AgendaListComponent },
-            { path: ':id', component: AgendaDetailsComponent }
+            { path: 'agenda/:id', component: AgendaDetailsComponent,
+              resolve: 
+              {
+              	agenda: AgendaResolver
+              } 
+            }
         ]
     }      
 ];

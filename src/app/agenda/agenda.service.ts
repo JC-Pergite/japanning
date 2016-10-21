@@ -6,8 +6,12 @@ import { Observable } from 'rxjs/Observable';
 import { Agenda } from './agenda';
 import { Plan } from '../city/plan/plan';
 
+
+   
+    
 @Injectable()
 export class AgendaService {  
+
 
 	private agendaUrl = 'app/agenda/agendas.json';
 
@@ -15,6 +19,7 @@ export class AgendaService {
 
     private getHeaders() {
         let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
           return headers;
     }
@@ -22,13 +27,29 @@ export class AgendaService {
 	getAgendas(): Observable<Agenda[]> {
 		return this.http
 			.get(this.agendaUrl)
-			.map((res: Response) => res.json().data || {})
+			.map((res: Response) => res.json().data as Agenda || {})
+                        // .subscribe(agendas => this.agendas = agendas)
 			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
 
-     getAgenda(id: any): Observable<Agenda> {
-                 return this.http
-            .get(this.agendaUrl+'id')
+  // Using Promises (works fine):
+  //    getAgendas() {
+  //   return Observable.create(observer => {
+  //     observer.next(agendas);
+  //   })
+  // }
+
+ // getAgenda(id) {
+ //    return Observable.create(observer => {
+ //      setTimeout(() => {
+ //        observer.next(agendas.find((agenda) => agenda.id == id))
+ //        observer.complete();
+ //      }, 1000);
+ //    });
+ //  }
+     getAgenda(id: number): Observable<Agenda> {
+        return this.http
+            .get(`${this.agendaUrl}/${id}`, {headers: this.getHeaders()})
             .map((res: Response) => res.json().data || {})
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
 
@@ -59,7 +80,7 @@ export class AgendaService {
     // Delete a comment
     removePlan (id:string): Observable<Agenda[]> {
         return this.http
-        	.delete(`${this.agendaUrl}/plans/${id}`) 
+        	.delete(`${this.agendaUrl}/${id}`) 
             .map((res:Response) => res.json().data || {}) 
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }   

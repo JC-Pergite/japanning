@@ -18,7 +18,6 @@ export class CurrentAgendaComponent implements OnChanges {
   private editing = false;
   errorMessage: string;
   agendas: Agenda;
-
   @Input() editId: string;
   @Input() listId: string;
 

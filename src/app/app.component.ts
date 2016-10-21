@@ -7,5 +7,5 @@ import './rxjs-operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  itle = 'iterashai!';
+  title = 'iterashai!';
 }
