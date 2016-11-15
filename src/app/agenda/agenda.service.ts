@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 
 import { Agenda } from './agenda';
 import { Plan } from '../city/plan/plan';
 
 
-   
-    
 @Injectable()
 export class AgendaService {  
 
 
-	private agendaUrl = 'app/agenda/agendas.json';
+	private agendaUrl = 'http://localhost:4200/app/agenda/agendas.json';
 
 	constructor(private http: Http) { };
 
@@ -24,50 +22,44 @@ export class AgendaService {
           return headers;
     }
 
-	getAgendas(): Observable<Agenda[]> {
+
+	getAgendas(): Observable<any> {
+       
 		return this.http
 			.get(this.agendaUrl)
-			.map((res: Response) => res.json().data as Agenda || {})
-                        // .subscribe(agendas => this.agendas = agendas)
+      .map((res: Response) => res.json().agenda || {})
+
+      .do(agendas => console.log(JSON.parse(JSON.stringify(agendas))))
 			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
 
-  // Using Promises (works fine):
-  //    getAgendas() {
-  //   return Observable.create(observer => {
-  //     observer.next(agendas);
-  //   })
-  // }
+    private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
+  }
 
- // getAgenda(id) {
- //    return Observable.create(observer => {
- //      setTimeout(() => {
- //        observer.next(agendas.find((agenda) => agenda.id == id))
- //        observer.complete();
- //      }, 1000);
- //    });
- //  }
-     getAgenda(id: number): Observable<Agenda> {
+    getAgenda(id): Observable<any> {
         return this.http
-            .get(`${this.agendaUrl}/${id}`, {headers: this.getHeaders()})
-            .map((res: Response) => res.json().data || {})
+          .get(`${this.agendaUrl}`) 
+            .map(res => (<Agenda[]>res.json().agenda).filter(agenda => agenda.id == id))
+            .do(agenda => console.log(JSON.parse(JSON.stringify(agenda))))
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
-
     }
 
-	addAgenda (body: Object): Observable<Agenda[]> {
-        let bodyString = JSON.stringify(body); // Stringify payload
-        let headers    = new Headers({ 'Content-Type': 'application/json' }); // Set content type to JSON
-        let options    = new RequestOptions({ headers: headers }); // Create a request option
+
+	  addAgenda (body: Object): Observable<Agenda[]> {
+        let bodyString = JSON.stringify(body); 
+        let headers    = new Headers({ 'Content-Type': 'application/json' }); 
+        let options    = new RequestOptions({ headers: headers }); 
 
         return this.http
-        	.post(this.agendaUrl, body, options) // ...using post request
-            .map((res:Response) => res.json().data || {}) // ...and calling .json() on the response to return data
-            .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+        	.post(this.agendaUrl, body, options) 
+            .map((res:Response) => res.json().data || {}) 
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     } 
 
     updateAgenda (body: Object): Observable<Agenda[]> {
-        let bodyString = JSON.stringify(body); // Stringify payload
+        let bodyString = JSON.stringify(body);
         let headers      = new Headers({ 'Content-Type': 'application/json' }); 
         let options       = new RequestOptions({ headers: headers }); 
 
@@ -77,11 +69,11 @@ export class AgendaService {
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }   
 
-    // Delete a comment
-    removePlan (id:string): Observable<Agenda[]> {
+    removeAgenda (id: string): Observable<Agenda> {
+      console.log(id);
         return this.http
         	.delete(`${this.agendaUrl}/${id}`) 
-            .map((res:Response) => res.json().data || {}) 
+            .map((res:Response) => res.json().data || {})
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
     }   
 }

@@ -7,10 +7,3 @@ export class Agenda {
 		public name: string, 
 		public plans: Plan[]) {}
 }
-
-// export class Agenda {
-	
-// 	constructor(
-// 		public id: number,
-// 		public name: string) {}
-// }

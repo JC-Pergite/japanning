@@ -15,37 +15,35 @@ import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
   	 <div>
       <ul>
         <li *ngFor="let agenda of agendas | async">
-          <a [routerLink]="['agenda', agenda.id]">
+          <a [routerLink]="['./', agenda.id]">
             {{agenda.name}}
           </a>
+          <button (click)="deleteAgenda(agenda.id)">Delete</button>
+
         </li>
-      </ul>      
+      </ul>  
   	</div>	
     
-  `,
+  `
 })
 export class AgendaListComponent implements OnInit {
-  
-  // @Input('agenda') agenda: Agenda;
-  // @Input() listId: string;
-  // @Input() editId: string;
+
   errorMessage: string;
   agendas: Observable<Array<any>>;
 
   constructor(private agendaService: AgendaService) { }
 
-  // ngOnInit() { this.getAgendas(); }
+  ngOnInit() { this.getAgendas(); }
 
-  // getAgendas() {
-  //     this.agendas = this.agendaService.getAgendas()
-  //     .subscribe(agendas => this.agendas = agendas,
-  //                 error => this.errorMessage = <any>error);
-  // }
+  getAgendas() {
 
-  ngOnInit() {
-    this.agendas = this.agendaService.getAgendas()
+      this.agendas = this.agendaService.getAgendas();
+
   }
 
-}
+  deleteAgenda(id) {
+      console.log(this.agendas)
+        this.agendaService.removeAgenda(id);
+    }
 
-  
+}

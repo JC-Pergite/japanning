@@ -1,60 +1,60 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute }    from '@angular/router';
+import { ActivatedRoute, Params, Router }    from '@angular/router';
 import { Agenda } from './agenda.ts';
 import { AgendaService } from './agenda.service';
 import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 
 @Component({
 	selector: 'kore-agenda-details',
 	template: `
 		<div class="panel panel-default">
-            <div class="panel-heading">{{agenda?.name}}</div>
-            <div class="panel-body">
-                <ul>
-                    <li *ngFor="let plan of agenda?.plans">
-                {{plan.name}} {{plan.description}}
-                    </li>
-                </ul>
-            </div>
-         <div class="panel-footer">
-                <button class="btn btn-info" (click)="editComment($event)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
-                <button class="btn btn-danger" (click)="deletePlan(agenda?.plans['id'])"><span class="glyphicon glyphicon-remove"></span>Delete</button>
-            </div>
-            
-        `, 
+            <div class="panel-heading" *ngFor="let day of agenda">
+                     <h3>Plans: {{day.name}}</h3>
+              <div *ngIf="day?.plans.length > 0">
+                  
+                  <ul>
+                      <li *ngFor="let plan of day?.plans">
+                        {{plan.name}} {{plan.description}} 
+                      <button (click)="deletePlan(plan)">Delete</button>
+
+                      </li>
+
+                      <li>Hey</li>
+
+                            <label> New Plan: <input #newPlan /></label>
+    
+                  </ul>
+
+              </div>
+              <div class="panel-footer">
+
+                  <button class="btn btn-info" (click)="editComment($event)">
+                  <span class="glyphicon glyphicon-edit"></span>Edit</button>
+              </div>
+            </div>  
+    </div>        
+        `
 
 })
 export class AgendaDetailsComponent implements OnInit {
-    // @Input('agenda') agenda: Agenda;
-    agenda;
-	@Input() listId: string;
-	@Input() editId: string;
-    //output
-   // private sub: any;
+  
+
+  agenda;
+
 	constructor(private route: ActivatedRoute, 
 				private agendaService: AgendaService,
 				private currentAgendaService: CurrentAgendaService) { }
 
-	ngOnInit() {
-		this.agenda = this.route.snapshot.data['agenda']
-                    // .subscribe(agendas.find((agenda) => agenda.id == id))
+  ngOnInit() { this.getAgenda();}
 
-        console.log(this.agenda);
-	}
-// ngOnInit() {
-//           let id = Number.parseInt(this.route.snapshot.params['id']);
-//           this.agenda = this.agendaService
-//             .getAgenda(id)
-//             console.log(this.agenda);
-//        ;
-//     }
-	editAgenda() {
-        // Emit edit event
-        CurrentAgendaService.get(this.editId).emit(this.agenda);
+  getAgenda() {
+ 
+      this.agenda = this.route.snapshot.data['agenda'];
+
     }
 
-    deletePlan(id:string) {
-        this.agendaService.removePlan(this.agenda.id)
-    }
+
 }

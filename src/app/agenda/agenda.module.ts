@@ -9,7 +9,7 @@ import { AgendaService } from './agenda.service';
 @NgModule ({
 	imports: [ SharedModule, agendaRouting ],
 	exports: [ AgendaListComponent ], 
-	declarations: [ AgendaListComponent, AgendaDetailsComponent   ],
+	declarations: [  AgendaListComponent, AgendaDetailsComponent   ],
 	providers: [ AgendaService ]
 })
 export class AgendaModule { }
