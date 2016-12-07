@@ -9,23 +9,37 @@ import { City } from './city';
 @Injectable()
 export class CityService {
 
-  	private cityUrl: string = 'app/city/cities.json';
+  	// private cityUrl = 'http://localhost:4200/app/city/cities.json';
+  	private cityUrl = 'http://localhost:4200/app/cities';
     private plansUrl: string = 'app/city/plan/plans.json';
 
 
 	constructor (private http: Http) {}
 
-	getCities(): Observable<City[]> {
+	getCities(): Observable<any> {
+		console.log('here');
 		return this.http
 			.get(this.cityUrl)
-			.map((res: Response) => res.json().data || {})
+			.map((res: Response) => <City>res.json().data || {} )
+				.do(cities => console.log(JSON.parse(JSON.stringify(cities))))
 			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
+
+	getCity(id): Observable<any> {
+        console.log(id);
+        return this.http
+          .get(`${this.cityUrl}`) 
+            .map(res => (<City[]>res.json().data).filter(city => city.id == id))
+            .do(city => console.log(JSON.parse(JSON.stringify(city))))
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'))    
+    }
+
 
 	getPlans(): Observable<Plan[]> {
 		return this.http
 			.get(this.plansUrl)
 			.map((res: Response) => res.json().data || {})
+
 			.catch((error: any) => Observable.throw(error.json().error || 'Server error'))	
 	}
 

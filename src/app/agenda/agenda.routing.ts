@@ -6,46 +6,14 @@ import { AgendaDetailsComponent } from './agenda-details.component';
 import { AgendaResolver } from './agenda.resolver';
 
 const agendaRoutes: Routes = [
-
-            { path: 'agenda', component: AgendaListComponent },
-             { path: 'agenda/:id', component: AgendaDetailsComponent,
+			{path: 'agenda', component: AgendaListComponent},
+          	{ path: 'agenda/:id', component: AgendaDetailsComponent,
               resolve: 
-              {
-                agenda: AgendaResolver
-              } 
-            }
-       
-          
+                {
+                  agenda: AgendaResolver
+                }
+          	}
 ];
-// const agendaRoutes: Routes = [
-
-//     { path: 'agenda', children: 
-//         [
-//             { path: '', component: AgendaListComponent },
-//             { path: ':id', component: AgendaDetailsComponent,
-//               resolve: 
-//               {
-//                 agenda: AgendaResolver
-//               } 
-//             }
-//         ]
-//     }      
-// ];
 
 export const agendaRouting: ModuleWithProviders =
 RouterModule.forChild(agendaRoutes)
-
-// const agendaRoutes: Routes = [
-
-//     { path: 'agenda', children: 
-//         [
-//             { path: '', component: AgendaListComponent },
-//             { path: ':id', component: AgendaDetailsComponent,
-//               resolve: 
-//               {
-//                 agenda: AgendaResolver
-//               } 
-//             }
-//         ]
-//     }      
-// ];

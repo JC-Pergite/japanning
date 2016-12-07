@@ -1,33 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { CityService } from './city.service';
-import { City } from '../city/city';
+import { City } from './city';
 import { CurrentAgendaService } from '../current-agenda/current-agenda.service';
-import { Agenda } from '../agenda/agenda';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-city-list',
   template: `
-    <div *ngFor="let city of cities">
-      <a routerLink="{{'./' + 'plans'}}">{{city.plans}}</a>
+    <div>
+      <ul>
+        <li *ngFor="let city of cities | async">
+        <a [routerLink]="['./' + city.id]">{{city.name}}</a>
+        </li>
+      </ul>
     </div> 
-    <div>  
-      <app-current-agenda></app-current-agenda>
-    </div>  
   `
 })
 export class CityListComponent implements OnInit {
 
   errorMessage: string;
-  cities: City[] = [];
+  cities: Observable<Array<City>>;
+  // cities: City;
 
   constructor(private cityService: CityService) { }
 
   ngOnInit() { this.getCities(); }
 
   getCities() {
-      this.cityService.getCities()
-      .subscribe(cities => this.cities = cities,
-                  error => this.errorMessage = <any>error);               
+    console.log(this.cities);
+      this.cities = this.cityService.getCities();
+      // .subscribe(cities => this.cities = cities,
+      //             error => this.errorMessage = <any>error);               
   }
 
 }

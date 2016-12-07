@@ -1,5 +1,6 @@
 {
-	"data": [
-		{ "id": "0", "name": "Tokyo", "plans": ["id: 1", "name: Akihabara", "description: cool"] }
+	"city": [
+		{ "id": "0", "name": "Tokyo", "plans": [{"id": "0", "name": "Akihabara", "description": "cool"}] },
+		{ "id": "1", "name": "Kyoto", "plans": ["id: 1", "name: Fushini Inari", "description: mesmerizing"] }
 	]
 }

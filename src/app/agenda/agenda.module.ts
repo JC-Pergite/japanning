@@ -5,11 +5,12 @@ import { AgendaListComponent } from './agenda-list.component';
 import { AgendaDetailsComponent } from './agenda-details.component';
 import { agendaRouting } from './agenda.routing';
 import { AgendaService } from './agenda.service';
+import { CurrentAgendaComponent } from '../current-agenda/current-agenda.component';
 
 @NgModule ({
 	imports: [ SharedModule, agendaRouting ],
 	exports: [ AgendaListComponent ], 
-	declarations: [  AgendaListComponent, AgendaDetailsComponent   ],
+	declarations: [ AgendaListComponent, AgendaDetailsComponent ],
 	providers: [ AgendaService ]
 })
 export class AgendaModule { }

@@ -4,20 +4,21 @@ import { Http, Response } from '@angular/http';
 import { Resolve, ActivatedRouteSnapshot, 
 		 RouterStateSnapshot, Router } from '@angular/router';
 
-import { AgendaService } from './agenda.service';
+import { CityService } from './city.service';
 import { Observable } from 'rxjs/Observable';
-import { Agenda } from './agenda';
+import { City } from './city';
 
 
 @Injectable()
-export class AgendaResolver implements Resolve<any> {
-  agenda;
-  constructor(private agendaService: AgendaService, 
+export class CityResolver implements Resolve<any> {
+  
+  city;
+  constructor(private cityService: CityService, 
   			  private router: Router, private http: Http) {}
   
-  resolve(route: ActivatedRouteSnapshot): Observable<Agenda> { 
+  resolve(route: ActivatedRouteSnapshot): Observable<City> { 
   	let id = route.params['id'];
-    return this.agendaService.getAgenda(id)
+    return this.cityService.getCity(id)
   }
 
   

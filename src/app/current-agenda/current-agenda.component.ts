@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 import { CurrentAgendaService } from './current-agenda.service';
 import { CityService } from '../city/city.service';
 import { AgendaService } from '../agenda/agenda.service';
@@ -8,60 +9,64 @@ import { Agenda } from '../agenda/agenda';
 
 @Component({
   selector: 'app-current-agenda',
-  templateUrl: './current-agenda.component.html',
-  styleUrls: ['./current-agenda.component.css'],
-  // providers: [ AgendaService, CurrentAgendaService ]
-})
-export class CurrentAgendaComponent implements OnChanges {
+  // templateUrl: './current-agenda.component.html',
+  template: `
+    <div class="panel panel-default">
+              <div *ngFor="let day of agenda | async" (click)="chosenOne(day)">
+                <ul>{{day?.name}}</ul>
+                <div *ngIf="selectedDay">
+                  <ul *ngFor="let plan of day.plans; let i = index">
+                        <li>{{plan?.name}}</li>
+                  </ul>
+                </div>
+              </div>
+                          <label> New Day: <input #newDay /></label>
+            <button (click)="addDay(newDay.value); newDay.value=''">Add</button>    
 
-  private model = new Agenda(1, '', []);
-  private editing = false;
+    </div> 
+  `,
+  styleUrls: ['./current-agenda.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CurrentAgendaComponent implements OnInit {
+
+  @Input() newPlan;
   errorMessage: string;
+  agenda: Observable<Agenda[]>;
+  selectedDay: Agenda[] = [];
   agendas: Agenda;
-  @Input() editId: string;
-  @Input() listId: string;
+  private id: number;
 
   constructor(private agendaService: AgendaService,
-  			  public currentAgendaService: CurrentAgendaService) { }
+  			      private currentAgendaService: CurrentAgendaService) { }
 
-  //  ngOnInit() { this.getAgendas(); }
+  ngOnInit() { this.selectAgenda(); }
 
-  // getAgendas() {
-  //     this.agendas = this.agendaService.getAgendas()
-  //     .subscribe(agendas => this.agendas = agendas,
-  //                 error => this.errorMessage = <any>error);               
-  // }
+  selectAgenda() {
+      this.agenda = this.agendaService.getAgendas();
 
-  saveAgenda() {
-  	let planning:Observable<Agenda[]>;
-	if(!this.editing){
-    // Create a new comment
-    	planning = this.agendaService.addAgenda(this.model)
-	} else {
-    // Update an existing comment
-    	 planning = this.agendaService.updateAgenda(this.model)
-  		}
-    planning.subscribe(
-	        agendas => {
-	            // Emit list event
-	            CurrentAgendaService.get(this.listId).emit(agendas);
-	            // Empty model
-	            this.model = new Agenda(1,'', []);
-	            // Switch editing status
-	            if(this.editing) this.editing = !this.editing;
-	        }, 
-	        err => {
-	            // Log errors if any
-	            
-	        });
-  	}
+  }
 
-  ngOnChanges(changes:any) {
-        // Listen to the 'edit'emitted event so as populate the model
-        // with the event payload
-        CurrentAgendaService.get(this.editId).subscribe((agenda:Agenda) => {
-            this.model = agenda;
-            this.editing = true;
-        });
-  }	
+  chosenOne(day) {
+      this.selectedDay = day.plans;
+      if (this.newPlan !== undefined) {
+            this.selectedDay.push(this.newPlan);
+            this.agendaService.addAgenda(day)
+                .subscribe(data => { 
+                                   this.agendas = data; 
+                                }, 
+                        error => { console.log("Batsu! aka wroong"); 
+                                  }
+            );
+      } else 
+        { 
+          console.log('nada');
+        }
+  }
+
+  addDay(name) {
+        let makeNew = new Agenda(this.id, name, []);
+        this.agendaService.addAgendas(makeNew)
+            .subscribe(agenda => this.selectedDay.push(agenda)); 
+    }
 }
