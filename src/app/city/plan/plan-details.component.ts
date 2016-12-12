@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Plan } from './plan';
 import { CityService } from '../city.service';
 
@@ -10,28 +10,12 @@ import { CityService } from '../city.service';
 export class PlanDetailsComponent implements OnInit {
 
    	plan: Plan;
-    private sub: any;
     id: number;
 
     constructor(private cityService: CityService,
-                private route: ActivatedRoute,
-                private router: Router) { }
+                private route: ActivatedRoute) { }
 
     ngOnInit() {
-        // let id = Number.parseInt(this.route.snapshot.params['id'], 10);
             let id = Number.parseInt(this.route.snapshot.params['id'], 10);
-            // this.cityService.getDetails(id).subscribe(p => this.plan = p);
     }
-    // ngOnInit() {
-    //     this.sub = this.route.params.subscribe(params => {
-    //       let id = Number.parseInt(params['id']);
-    //       this.cityService
-    //         .get(id)
-    //         .subscribe(p => this.plan = p);
-    //     });
-    // }
-
-    // ngOnDestroy() {
-    //     this.sub.unsubscribe();
-    // }
 }

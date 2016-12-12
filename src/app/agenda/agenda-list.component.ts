@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Agenda } from './agenda';
@@ -16,17 +16,15 @@ import { AgendaService } from './agenda.service';
           </a>
           <button (click)="deleteAgenda(agenda.id)">Delete</button>
         </li>
-      </ul>  
-  	</div>	
+      </ul>
+    </div>	
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AgendaListComponent implements OnInit {
 
     errorMessage: string;
     agendas: Observable<Array<any>>;
     days: Agenda[] = [];
-    id: number;
 
     constructor(private agendaService: AgendaService) { }
 
@@ -36,15 +34,7 @@ export class AgendaListComponent implements OnInit {
         this.agendas = this.agendaService.getAgendas();
     }
 
-    addPlan(name) {
-        let makeNew = new Agenda(this.id, name, []);
-        this.agendaService.addAgendas(makeNew)
-              .subscribe(agenda => this.days.push(agenda));  
-    }
-
     deleteAgenda(dayId) {
-        console.log(this.agendas);
-        this.agendaService.removeAgenda(dayId)
-          .subscribe(agendas => this.days = agendas);
+        this.agendaService.removeAgenda(dayId);
     }
 }

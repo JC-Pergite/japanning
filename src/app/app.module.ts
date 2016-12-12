@@ -36,7 +36,6 @@ import { CityResolver } from './city/city.resolver';
   providers: [ appRoutingProviders, AgendaResolver, CityResolver, 
                 { provide: XHRBackend, useClass: InMemoryBackendService },
                 { provide: AgendaData, useClass: InMemoryWebApiModule } ],
-  // providers: [ appRoutingProviders, AgendaResolver, CityResolver ], 
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
