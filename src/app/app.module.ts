@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule, XHRBackend } from '@angular/http';
 import { InMemoryBackendService, InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -30,7 +31,8 @@ import { CityResolver } from './city/city.resolver';
     FormsModule,
     routing,
     AgendaModule,
-    CityModule  
+    CityModule,
+    AlertModule  
   ],
   declarations: [ AppComponent ],
   providers: [ appRoutingProviders, AgendaResolver, CityResolver, 
