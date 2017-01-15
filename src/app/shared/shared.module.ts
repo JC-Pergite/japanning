@@ -5,7 +5,6 @@ import { AgendaListComponent } from '../agenda/agenda-list.component';
 
 @NgModule ({
 	imports: [ CommonModule ], 
-	exports: [ CommonModule, FormsModule ],
-	// declarations: [ AgendaListComponent ]
+	exports: [ CommonModule, FormsModule ]
 })
 export class SharedModule { }

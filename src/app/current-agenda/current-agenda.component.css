@@ -1,0 +1,49 @@
+.current {
+	position: absolute;
+	margin-top: -33.5em; 
+	width: 24%;
+	margin-left: 1em;
+	border: 2pt solid salmon;
+	display: flex;
+	flex-flow: column;
+}
+
+#dropdownMenuButton {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 5.3em;
+}
+
+.custom-bullet li {
+    display: block;
+    margin-left: 2.5em;
+}
+
+.custom-bullet li:before {
+    /* Using a Bootstrap glyphicon as the bullet point */
+    content: "\e143";
+    font-family: 'Glyphicons Halflings';
+    font-size: 11pt;
+    margin-left: -12pt;
+    color: #5bc0de;
+}
+
+.deletePlan {
+	position: absolute;
+	margin-top: -1.6em;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+.inputBox {
+	width: 50%;
+	margin-left: 5em;
+	text-align: center;
+}
+
+.addDay {
+	margin-bottom: 1em;
+	margin-left: 7.8em;
+}

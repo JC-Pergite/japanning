@@ -6,14 +6,22 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-city-list',
   template: `
-    <div>
-      <ul>
-        <li *ngFor="let city of cities | async">
-        <a [routerLink]="['./' + city.id]">{{city.name}}</a>
-        </li>
-      </ul>
-    </div> 
-  `
+  <div class="container">
+    <div class="row stylish-panel row-flex" *ngFor="let city of cities | async">
+      <div class="col-md-3">
+        <div>
+          <img src={{city.pic}} alt="Texto Alternativo" class="img-circle img-thumbnail">
+        </div>
+          <div class="flexx flex-grow">
+            <h2>{{city.name}}</h2>
+            <p>{{city.description}}</p>
+          </div>
+          <a [routerLink]="['./' + city.id]" class="btn btn-primary" title="See more">Explore »</a>
+      </div>
+    </div>
+  </div>
+  `,
+  styleUrls: ['./city-list.component.css']
 })
 export class CityListComponent implements OnInit {
 

@@ -1,0 +1,11 @@
+h1.navbar-brand {
+	padding-top: 12px;
+	color: #eee;
+}
+
+h1.navbar-brand:hover {
+	color: #ef6c33;
+}
+.navbar-nav>li>a:hover {
+	color: #10c1c1;
+}

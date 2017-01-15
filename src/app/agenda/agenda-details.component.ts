@@ -1,30 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Agenda } from './agenda.ts';
 import { AgendaService } from './agenda.service';
 import { Observable } from 'rxjs/Observable';
 
-
 @Component({
   selector: 'kore-agenda-details',
   template: `
-    <div class="panel panel-default">
-            <div class="panel-heading" *ngFor="let day of agenda">
-                <h3>Plans: {{day.name}}</h3>
-              <div *ngIf="day?.plans?.length > 0">
-                <ul *ngFor="let plan of day?.plans; let i = index">
-                      <a [routerLink]="['./plans/', plan.id]">{{plan.name}}</a> 
-                      <button (click)="deletePlan(day, i)">Delete</button>
-                </ul>
-              </div>
-            </div>
-    </div>        
+      <div class="panel-heading" *ngFor="let day of agenda">
+          <h3>{{day.name}}</h3>
+        <div class="media" *ngFor="let plan of day?.plans; let i = index; trackBy: trackByFn">
+            <a class="media-left" href="#">
+              <img class="media-object" src={{plan.pic}} width="100" alt="">
+            </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{plan.name}}</h4>
+            <p>{{plan.description}}</p>
+            <button type="button" class="btn btn-danger btn-xs deletion" (click)="deletePlan(day, i)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
         `,
+  styleUrls: ['../agenda/agenda-details.component.css']
 })
-export class AgendaDetailsComponent implements OnInit {
+export class AgendaDetailsComponent implements OnInit, OnDestroy {
   
   agenda;
-  detail;
+  private alive: boolean = true;
 
   constructor(private route: ActivatedRoute, 
               private agendaService: AgendaService) { }
@@ -36,15 +40,23 @@ export class AgendaDetailsComponent implements OnInit {
     }
 
   deletePlan(day, index) {
-      this.detail = day.plans[index];
-      let planId = this.detail.id;
-      for (var i = 0; i < this.agenda.length; i++) {
-            if ( planId === index ) {
-              this.agenda[i].plans.splice(index, 1);
+      let planId = day.plans[index].id;
+      for (var i = 0; i < day.plans.length; i++) {
+            if ( planId === day.plans[i].id ) {
+              day.plans.splice(index, 1);
             }
       }
       this.agendaService.updateAgenda(day)
+          .takeWhile(() => this.alive)
           .subscribe(data => this.agenda.plans = data);
+   }
+
+  trackByFn(index, item) {
+      return item.id;
+  }
+
+  ngOnDestroy() {
+      this.alive = false;
    }
 
 }

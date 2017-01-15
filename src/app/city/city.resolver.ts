@@ -8,7 +8,6 @@ import { CityService } from './city.service';
 import { Observable } from 'rxjs/Observable';
 import { City } from './city';
 
-
 @Injectable()
 export class CityResolver implements Resolve<any> {
   
@@ -20,6 +19,5 @@ export class CityResolver implements Resolve<any> {
   	let id = route.params['id'];
     return this.cityService.getCity(id)
   }
-
   
 }

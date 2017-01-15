@@ -8,7 +8,6 @@ import { AgendaService } from './agenda.service';
 import { Observable } from 'rxjs/Observable';
 import { Agenda } from './agenda';
 
-
 @Injectable()
 export class AgendaResolver implements Resolve<any> {
   agenda;
@@ -20,5 +19,4 @@ export class AgendaResolver implements Resolve<any> {
     return this.agendaService.getAgenda(id)
   }
 
-  
 }

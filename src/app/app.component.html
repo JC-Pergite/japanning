@@ -1,15 +1,22 @@
-<h1>
-  {{title}}
-</h1>
 <header>
-			<nav>
-				<ul>	
-					<a routerLink="{{'/city'}}">Cities</a>
-					<a routerLink="{{'/agenda'}}">Agenda</a>
-				</ul>
-			</nav>
-			<div>
-			<alert type="success">hello, it works!</alert>
+		<nav class="navbar navbar-inverse navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1 class="navbar-brand">Japanning - your ninja travel guide</h1>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a routerLink="{{'/city'}}">Cities</a></li>
+						<li><a routerLink="{{'/agenda'}}">Agenda</a></li>
+					</ul>
+				</div>
 			</div>
+		</nav>
 </header>
 			<router-outlet></router-outlet>

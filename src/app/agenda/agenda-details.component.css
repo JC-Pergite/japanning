@@ -1,0 +1,27 @@
+h3 {
+	margin-left: 20.6em;
+	color: mediumvioletred;
+}
+
+p {
+	margin-bottom: 0;
+	padding-left: .5em;
+}
+
+h4 {
+	color: royalblue;
+}
+
+.deletion {
+	margin-left: 30em;
+}
+
+.media-body {
+	vertical-align: middle;
+	border: 1px solid #1bb9b9;
+	padding: 7px;
+}
+
+img.media-object {
+	margin-top: 1.6em;
+}

@@ -1,0 +1,104 @@
+.planList {
+  	margin: 0 -5px;
+  	padding: 5px;
+}
+
+.describe {
+	width: 130pt; 
+	height: 320pt;
+	margin-top: 6em;
+	margin-left: 36em; 
+	padding-top: 8pt;
+	padding-left: 6pt;
+	padding-right: 6pt;
+	border: 1px solid rgba(0, 0, 255, 0.85);
+	text-align: center;
+	border-radius: 4px;
+}
+
+.foto {
+	position: absolute;
+	margin-top: -25.1em; 
+	margin-bottom: 30em;
+	margin-left: 6em; 	
+}
+
+.list-group-item {
+	top: 3.6em;
+	width: 10em;
+	height: 2.5em;
+	margin-right: 2em;
+	margin-left: 4.4em;
+	padding-top: 6pt;
+	text-align: center;
+	border: 1px solid rgba(16, 6, 35, 0.69);
+}
+
+.addEvent {
+	position: absolute;
+	width: 204pt;
+	margin-top: 30.4em; 
+	margin-left: 8em; 
+}
+
+.contenido {
+	height: 950px;
+	margin-top: -11.7em; 
+	margin-left: 20em;
+	margin-right: .5em;
+	border: 1.5pt solid #1740E2;
+	border-radius: 4px;
+}
+
+.embed-responsive-4by3.eventVid {
+	margin-top: 5em;
+	margin-left: 6em;
+}
+
+.embed-responsive-item {
+	width: 340px;
+	height: 260px;
+}
+
+.embed-responsive-item.preview {
+	width: 340px;
+	height: 260px;
+	position: absolute;
+	margin-left: 26em;
+	margin-top: 3.7em;
+}
+
+.cityVid {
+	width: 76.5em;
+	height: 400px;
+	border: 1px solid midnightblue;
+	margin-top: -13em; 
+	margin-bottom: -15em;
+}
+
+.noDay {
+	position: absolute;
+	margin-top: 30em;
+	margin-left: 4em;
+}
+
+h1.neon {
+	margin-left: 13.2em;
+	margin-top: .4em;
+	margin-bottom: .2em;
+	font-size: 700;
+	color: #a6f5f7; 
+	height: 20pt;
+	letter-spacing: 4px;
+    text-shadow: 0 0 5px #03f59c, 0 0 10px #0b52e4,
+             0 0 20px #48adbf, 0 0 30px #0abfe0,
+             0 0 40px #0e27ca;
+}
+
+h3 {
+	text-align: left;
+	position: absolute;
+	margin-top: 1em;
+	margin-left: 21.3em;
+	color: #ea1640;
+}

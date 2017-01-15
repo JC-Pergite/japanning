@@ -4,12 +4,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { City } from './city';
 
-
 @Injectable()
 export class CityService {
 
   	private cityUrl = 'http://localhost:4200/app/cities';
-    private plansUrl: string = 'app/city/plan/plans.json';
 
 	constructor (private http: Http) {}
 
