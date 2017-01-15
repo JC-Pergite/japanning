@@ -8,7 +8,6 @@ import { SafeYoutubePipe } from './safe-youtube.pipe';
 
 import { cityRouting } from './city.routing';
 import { CityService } from './city.service';
-import { AgendaListComponent } from '../agenda/agenda-list.component';
 
 @NgModule ({
 	imports: [ SharedModule, cityRouting ], 

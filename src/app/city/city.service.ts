@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { City } from './city';
+import { Plan } from './plan';
 
 @Injectable()
 export class CityService {

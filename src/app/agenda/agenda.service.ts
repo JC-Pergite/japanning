@@ -4,7 +4,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Agenda } from './agenda';
-import { Plan } from '../city/plan/plan';
+import { Plan } from '../city/plan';
 
 @Injectable()
 export class AgendaService {  

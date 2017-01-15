@@ -1,4 +1,4 @@
-import { Plan } from './plan/plan';
+import { Plan } from './plan';
 
 export class City {
 	constructor(

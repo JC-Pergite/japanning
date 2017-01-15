@@ -1,4 +1,4 @@
-import { Plan } from '../city/plan/plan';
+import { Plan } from '../city/plan';
 
 export class Agenda {
 	
