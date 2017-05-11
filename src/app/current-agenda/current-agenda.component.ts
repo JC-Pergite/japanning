@@ -81,7 +81,7 @@ export class CurrentAgendaComponent implements OnInit, OnDestroy {
       this.agendaService.addAgendas(this.choice)
           .takeWhile(() => this.alive)
           .subscribe(data => { this.agendas = data; },
-                    error => { console.log("Batsu! aka wrong"); }
+                    error => { console.log("Batsu!"); }
           );
   }
 
@@ -107,7 +107,7 @@ export class CurrentAgendaComponent implements OnInit, OnDestroy {
       this.agendaService.addAgendas(makeNew)
           .takeWhile(() => this.alive)
           .subscribe(data => { this.agenda.push(data); },                            
-                     error => { console.log("Batsu! aka wrong"); },                            
+                     error => { console.log("Batsu!"); },                            
                      ()   => { this.choice = this.agenda[this.agenda.length - 1]; 
                                  this.chosenOne(this.choice); 
                               }

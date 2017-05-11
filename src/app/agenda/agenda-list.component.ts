@@ -63,7 +63,6 @@ export class AgendaListComponent implements OnInit {
 
   deleteAgenda(day) {
     console.log("disappear");
-    console.log(day.name);
     this.agendaService.removeAgenda(day);
   }
 }
