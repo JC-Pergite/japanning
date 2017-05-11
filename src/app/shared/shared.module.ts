@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AgendaListComponent } from '../agenda/agenda-list.component';
+import { ModalModule } from 'ng2-bootstrap/modal';
 
 @NgModule ({
-	imports: [ CommonModule ], 
-	exports: [ CommonModule, FormsModule ]
+	imports: [ CommonModule, FormsModule, ModalModule.forRoot() ], 
+	exports: [ CommonModule, FormsModule, ModalModule ]
 })
 export class SharedModule { }

@@ -23,10 +23,12 @@ import { CurrentAgendaComponent } from '../current-agenda/current-agenda.compone
              </iframe>
            </div>
            <div *ngIf="planClicked" class="contenido">
-             <h3>{{event.name}}</h3>
+             <div class="titleContainer">
+               <h3 class="cityTitle">{{event.name}}</h3>
+             </div> 
              <div>
                <button type="button" class="btn btn-success btn-large addEvent" (click)="getPlan(event)">
-                  Add Plan!
+                  Add Plan !
                </button>
                <div *ngIf="currently.noDay" class="noDay alert alert-danger alert-dismissible" role="alert">
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -39,7 +41,7 @@ import { CurrentAgendaComponent } from '../current-agenda/current-agenda.compone
         	     <p>{{event.description}}</p>
         	   </div>
         	   <div class="foto">
-        	     <img src={{event.pic}} width="333" height="333" class="img-responsive" alt="Responsive image">
+        	     <img src={{event.pic}} width="420" height="420" class="img-responsive" alt="Responsive image">
         	   </div>
              <div class="embed-responsive embed-responsive-4by3 eventVid">
                <iframe class="embed-responsive-item" 

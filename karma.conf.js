@@ -3,19 +3,22 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: './',
-    frameworks: ['jasmine', 'angular-cli'],
+    basePath: '',
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      require('@angular/cli/plugins/karma')
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      './src/test.ts': ['@angular/cli']
+    },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
     },
     remapIstanbulReporter: {
       reports: {
@@ -23,8 +26,13 @@ module.exports = function (config) {
         lcovonly: './coverage/coverage.lcov'
       }
     },
-    angularCliConfig: './angular-cli.json',
-    reporters: ['progress', 'karma-remap-istanbul'],
+    angularCli: {
+      config: './angular-cli.json',
+      environment: 'dev'
+    },
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'karma-remap-istanbul']
+              : ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

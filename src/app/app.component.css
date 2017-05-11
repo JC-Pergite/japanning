@@ -1,11 +1,36 @@
-h1.navbar-brand {
+a.navbar-brand {
 	padding-top: 12px;
+	color: #eee;  
+}
+
+a.navbar-brand:hover {
+	color: #ef6c33;
+	text-decoration: none;
+}
+
+.navbar-nav>li>a {
 	color: #eee;
 }
 
-h1.navbar-brand:hover {
-	color: #ef6c33;
-}
 .navbar-nav>li>a:hover {
 	color: #10c1c1;
+}
+
+.navbar {
+	background-color: #69163F;
+	
+}
+
+.navbar-nav {
+	margin-left: 41.5em;
+	margin-top: 1.5px;
+}
+
+div.container {
+	display: inline-flex;
+}
+
+#bs-example-navbar-collapse-1 {
+    display: -webkit-box;
+    float: right;
 }

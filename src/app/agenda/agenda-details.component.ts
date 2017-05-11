@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
-import { Agenda } from './agenda.ts';
+import { Agenda } from './agenda';
 import { AgendaService } from './agenda.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -33,7 +33,7 @@ export class AgendaDetailsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, 
               private agendaService: AgendaService) { }
 
-  ngOnInit() { this.getAgenda();}
+  ngOnInit() { this.getAgenda(); }
 
   getAgenda() {
       this.agenda = this.route.snapshot.data['agenda'];

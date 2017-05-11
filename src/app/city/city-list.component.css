@@ -30,6 +30,7 @@ li {
 .stylish-panel {
     padding: 20px 0;
     text-align: center;
+    margin-top: 1em;
 }
 .stylish-panel > div > div{
     padding: 10px;

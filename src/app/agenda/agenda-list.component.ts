@@ -8,7 +8,7 @@ import { AgendaService } from './agenda.service';
   selector: 'kore-agenda-list',
   template: `
   <div class="container">
-    <div class="row stylish-panel" *ngFor="let agenda of agendas | async; trackBy: trackByFn">
+    <div class="row stylish-panel" *ngFor="let agenda of agendas | async">
       <div [hidden]="agenda.hideMe" class="col-md-3">
         <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -34,12 +34,9 @@ import { AgendaService } from './agenda.service';
         </div>
         <div class="flexx flex-grow">
           <h2 id="myConfirm">{{agenda.name}}</h2>
-          <p> </p>
-          <app-city-details *ngFor="let plan of agenda?.plans; trackBy: trackByFn" (onAdded)="onAdded($event)">
-            <ul>
-              <li>{{plan.name}}</li>
-            </ul>
-          </app-city-details>
+          <ul *ngFor="let plan of agenda?.plans">
+            <li>{{plan.name}}</li>
+          </ul>
         </div>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm"
             (click)="deleteAgenda(agenda.id)">Delete
@@ -54,7 +51,6 @@ import { AgendaService } from './agenda.service';
 export class AgendaListComponent implements OnInit {
 
   hideMe: {};
-  plan: Array<any>;
   agendas: Observable<Agenda>;
 
   constructor(private agendaService: AgendaService) { }
@@ -66,15 +62,8 @@ export class AgendaListComponent implements OnInit {
   }
 
   deleteAgenda(day) {
+    console.log("disappear");
+    console.log(day.name);
     this.agendaService.removeAgenda(day);
   }
-  
-  trackByFn(index, item) {
-    return item.id;
-  }
-
-  onAdded(newPlan) {
-      this.plan.push(newPlan);
-  }
-
 }

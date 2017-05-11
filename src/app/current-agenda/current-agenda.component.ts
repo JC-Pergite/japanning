@@ -21,18 +21,23 @@ import { Agenda } from '../agenda/agenda';
         </ul>
       </div>
       <div *ngIf="selectedDay">
-        <ul class="custom-bullet" [(ngModel)]="choice" *ngFor="let plan of choice?.plans; 
+        <ul class="custom-bullett" [(ngModel)]="choice" *ngFor="let plan of choice?.plans; 
             let i = index; trackBy: trackByFn" ngDefaultControl>
-              <li>{{plan?.name}}</li>
+              <li>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                {{plan?.name}}
+
+              </li>
               <button type="button" class="btn btn-danger btn-sm deletePlan" 
                 (click)="deletePlan(choice, i)">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <i class="fa fa-times" aria-hidden="true"></i>
               </button>
+              
         </ul>
       </div>
     </div>
     <div>
-       <label><input class="inputBox" placeholder="Day Name" #newDay/></label>
+       <label><input class="inputBox" placeholder="New Day Name" #newDay/></label>
        <button class="btn btn-primary btn-sm addDay" role="button" (click)="addDay(newDay.value); 
          newDay.value=''">
            Add Day!
