@@ -3,12 +3,26 @@
 	<head>
 	  	<title>Japanning</title>
 	  	<meta charset="utf-8">
+	    <style type="text/css">
+	      body:before {
+	        content: attr(message);
+	      }
+	    </style>
 	  	<base href="/">
 	  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	  	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	  	<link rel="icon" type="image/x-icon" href="favicon.ico">  	
 	</head>
 	<body>
+		<script>
+			 (function(){
+			    var redirect = sessionStorage.redirect;
+			    delete sessionStorage.redirect;
+			    if (redirect && redirect != location.href) {
+			      history.replaceState(null, null, redirect);
+			    }
+			 })();
+		</script>
   		<app-root>Checking if Godzilla left...</app-root>
 	</body>
 </html>
