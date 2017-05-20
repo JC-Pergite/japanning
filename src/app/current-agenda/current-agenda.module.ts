@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { CurrentAgendaComponent } from './current-agenda.component';
-import { AgendaListComponent } from '../agenda/agenda-list.component';
+import { AgendaModule }  from '../agenda/agenda.module';
 
 @NgModule ({
-	imports: [ SharedModule ], 
+	imports: [ SharedModule, AgendaModule ], 
 	exports: [ CurrentAgendaComponent ],
-	declarations: [ CurrentAgendaComponent, AgendaListComponent ]
+	declarations: [ CurrentAgendaComponent ]
 })
 export class CurrentAgendaModule { }

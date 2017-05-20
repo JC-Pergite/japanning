@@ -28,7 +28,7 @@ import { CurrentAgendaComponent } from '../current-agenda/current-agenda.compone
              </div> 
              <div>
                <button type="button" class="btn btn-success btn-large addEvent" (click)="getPlan(event)">
-                  Add Plan !
+                  Add Plan
                </button>
                <div *ngIf="currently.noDay" class="noDay alert alert-danger alert-dismissible" role="alert">
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">

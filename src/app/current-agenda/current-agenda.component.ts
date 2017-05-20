@@ -40,7 +40,7 @@ import { Agenda } from '../agenda/agenda';
        <label><input class="inputBox" placeholder="New Day Name" #newDay/></label>
        <button class="btn btn-primary btn-sm addDay" role="button" (click)="addDay(newDay.value); 
          newDay.value=''">
-           Add Day!
+           Add Day
        </button>
     </div>
   </div>        
