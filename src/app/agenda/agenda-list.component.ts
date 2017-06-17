@@ -57,7 +57,7 @@ export class AgendaListComponent implements OnInit {
 
   ngOnInit() { this.getAgendas(); }
 
-  getAgendas() { 
+  getAgendas(): void { 
     this.agendas = this.agendaService.getAgendas();
   }
 

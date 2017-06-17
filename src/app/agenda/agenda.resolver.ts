@@ -14,7 +14,7 @@ export class AgendaResolver implements Resolve<any> {
   constructor(private agendaService: AgendaService, 
   			  private router: Router, private http: Http) {}
   
-  resolve(route: ActivatedRouteSnapshot): Observable<Agenda> { 
+  resolve(route: ActivatedRouteSnapshot): Observable<any> { 
   	let id = route.params['id'];
     return this.agendaService.getAgenda(id)
   }

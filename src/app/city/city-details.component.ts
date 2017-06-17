@@ -8,6 +8,8 @@ import { CurrentAgendaComponent } from '../current-agenda/current-agenda.compone
 @Component({
 	selector: 'app-city-details',
 	template: `
+    <h5>hey there!</h5>
+
 		<div>
 		   <div class="panel-heading" *ngFor="let place of city">
          <h1 class="neon">{{place.name}}</h1>
@@ -72,18 +74,18 @@ export class CityDetailsComponent implements OnInit {
 
 	ngOnInit() { this.getCity(); }
 
-	getCity() {
+	getCity(): void {
 		this.city = this.route.snapshot.data['city'];
 	}
 
-  showDetails(cosa) {
+  showDetails(cosa): void {
     this.notYet = false;
     this.planClicked = true;
     this.event = cosa;
 
   }
 
-	getPlan(newPlan) {
+	getPlan(newPlan): void {
     this.current.addPlan(newPlan);
     this.onAdded.emit(newPlan);
     this.plan = this.event;

@@ -15,7 +15,7 @@ export class CityResolver implements Resolve<any> {
   constructor(private cityService: CityService, 
   			  private router: Router, private http: Http) {}
   
-  resolve(route: ActivatedRouteSnapshot): Observable<City> { 
+  resolve(route: ActivatedRouteSnapshot): Observable<any> { 
   	let id = route.params['id'];
     return this.cityService.getCity(id)
   }

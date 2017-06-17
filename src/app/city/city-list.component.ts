@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CityService } from './city.service';
 import { City } from './city';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-city-list',
   template: `
+        <h5>hey there!</h5>
+
   <div class="container">
+
     <div class="row stylish-panel row-flex" *ngFor="let city of cities | async">
       <div class="col-md-3">
         <div>
@@ -25,13 +29,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CityListComponent implements OnInit {
 
-  cities: Observable<Array<City>>;
+  cities: Observable<City>;
 
   constructor(private cityService: CityService) { }
 
   ngOnInit() { this.getCities(); }
 
-  getCities() {
+  getCities(): void {
       this.cities = this.cityService.getCities();
   }
 

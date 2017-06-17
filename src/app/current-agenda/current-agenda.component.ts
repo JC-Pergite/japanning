@@ -10,6 +10,8 @@ import { Agenda } from '../agenda/agenda';
   template: `
 
   <div class="panel panel-default current">
+    <h5>hey there!</h5>
+
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,7 +51,7 @@ import { Agenda } from '../agenda/agenda';
 })
 export class CurrentAgendaComponent implements OnInit, OnDestroy {
 
-  agenda: Agenda[];
+  agenda: any;
   selectedDay: Agenda[] = [];
   agendas: Agenda;
   private id: number;
@@ -61,18 +63,18 @@ export class CurrentAgendaComponent implements OnInit, OnDestroy {
 
   ngOnInit() { this.selectAgenda(); }
 
-  selectAgenda() {
+  selectAgenda(): void {
       this.agendaService.getAgendas()
           .takeWhile(() => this.alive)
           .subscribe(data => { this.agenda = data });
   }
 
-  chosenOne(day) {
+  chosenOne(day): void {
       this.choice = day;
       this.selectedDay = day.plans;
   }
 
-  addPlan(newPlan){
+  addPlan(newPlan): void {
           if (this.choice != null) { 
                 this.noDay = false; 
           } else { this.noDay = true; };
@@ -101,7 +103,7 @@ export class CurrentAgendaComponent implements OnInit, OnDestroy {
           .subscribe(data => this.agendas = data);
   }
 
-  addDay(name) {
+  addDay(name): void {
       let makeNew = new Agenda(this.id, name, "", "", "", []);
       this.choice = makeNew;
       this.agendaService.addAgendas(makeNew)

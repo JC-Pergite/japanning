@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'kore-agenda-details',
   template: `
+  <h5>hey there!</h5>
       <div class="panel-heading" *ngFor="let day of agenda">
           <h3>{{day.name}}</h3>
         <div class="media" *ngFor="let plan of day?.plans; let i = index; trackBy: trackByFn">
@@ -35,7 +36,7 @@ export class AgendaDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() { this.getAgenda(); }
 
-  getAgenda() {
+  getAgenda(): void {
       this.agenda = this.route.snapshot.data['agenda'];
     }
 

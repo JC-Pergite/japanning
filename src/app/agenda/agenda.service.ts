@@ -9,11 +9,13 @@ import { Plan } from '../city/plan';
 @Injectable()
 export class AgendaService {  
 
-  private agendaUrl = 'http://localhost:4200/app/agendas';
+  // private agendaUrl = 'http://localhost:4200/app/agendas';
+  private agendaUrl = '/api/agenda';
+
 
   constructor(private http: Http) { };
 
-  getAgendas(): Observable<any> {
+  getAgendas(): Observable<Agenda> {
        
     return this.http
       .get(this.agendaUrl)
@@ -22,7 +24,7 @@ export class AgendaService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))  
   }
 
-  getAgenda(id): Observable<any> {
+  getAgenda(id): Observable<Agenda[]> {
 
     return this.http
       .get(`${this.agendaUrl}`) 

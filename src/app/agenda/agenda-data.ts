@@ -1,6 +1,14 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+// import { InMemoryDbService, InMemoryBackendService } from 'angular-in-memory-web-api';
+import {ResponseOptions, XSRFStrategy, BrowserXhr, XHRBackend, Http } from "@angular/http";
+// import {Injector} from "@angular/core";
+// import {environment} from "../environments/environment";
 
-export class AgendaData implements InMemoryDbService {
+ // node_modules/.bin/ngc
+// let environment = {
+//   production: true
+// };
+
+export class AgendaData {
   createDb() {
     let agendas = [
     ]; 
@@ -28,4 +36,26 @@ export class AgendaData implements InMemoryDbService {
     ];
       return { agendas, cities };
   }
-}
+ } 
+// }
+// @NgModule({
+//   imports: [ HttpModule ],
+//   providers: [
+//     {
+//       provide: XHRBackend,
+//       useFactory: (injector: Injector, browser: BrowserXhr,
+//                    xsrf: XSRFStrategy, options: ResponseOptions): any => {
+//         if (environment.production) {
+//           return new XHRBackend(browser, options, xsrf);
+//         } else {
+//           return new InMemoryBackendService(injector, new AgendaData(), {
+//             // the configuration object
+//           });
+//         }
+//       },
+//       deps: [ Injector, BrowserXhr, XSRFStrategy, ResponseOptions ]
+//     }
+//   ]
+// })
+// export class AppHttpModule {
+// }

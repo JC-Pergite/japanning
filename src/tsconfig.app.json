@@ -1,0 +1,45 @@
+{
+  "extends": "../tsconfig.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "",
+    "outDir": "../out-tsc/app",
+    "declaration": false,
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es5", "es2016", "dom"],
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [],
+    "typeRoots": [
+      "../node_modules/@types/"
+    ],
+    "paths": { 
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "tmp",
+    "dist",
+    "**/*.ngfactory.ts",
+    "**/*.shim.ts",
+    "**/*.spec.ts",
+    "node_modules/*"
+    ],
+  "include": [
+    "app/app.module.ts",
+    "app/main-aot.ts"
+  ],
+  "angularCompilerOptions": {
+    "debug": true,
+    "genDir": "./aot",
+    "entryModule": "app/app.module#AppModule",
+    "skipMetadataEmit": true
+  }
+}

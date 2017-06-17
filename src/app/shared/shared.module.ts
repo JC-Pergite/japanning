@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ng2-bootstrap/modal';
 
 @NgModule ({
-	imports: [ CommonModule, FormsModule, ModalModule.forRoot() ], 
-	exports: [ CommonModule, FormsModule, ModalModule ]
+	imports: [ CommonModule, FormsModule ], 
+	exports: [ CommonModule, FormsModule ]
 })
 export class SharedModule { }
